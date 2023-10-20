@@ -12,6 +12,11 @@ Avoiding the pain to push some draft commits on main branch.
 
 ## Installation
 
+- npm
+```bash
+npm install local-semantic-release@0.0.2
+```
+
 ## Usage
 
 ## Configuration
