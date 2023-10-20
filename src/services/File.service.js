@@ -1,4 +1,6 @@
-import { Glob, glob } from 'glob'
+import { Glob } from 'glob'
+import path from 'node:path'
+import fs from 'node:fs'
 
 export const resolveConfigFile = (args) => {
   const flagIndex = args?.indexOf('-p')
@@ -18,4 +20,20 @@ export const getShortestPath = (paths) => {
 export const searchFile = async (pattern, ignore) => {
   const g = new Glob(pattern, ignore)
   return getShortestPath(Array.from(g))
+}
+
+export const readJSObjectFromFile = async (filePath) => {
+  const absolutePath = path.resolve(filePath)
+
+  if (!fs.existsSync(absolutePath)) {
+    throw new Error(`File not found: ${absolutePath}`)
+  }
+
+  const fileContents = require(absolutePath)
+
+  if (typeof fileContents !== 'object') {
+    throw new Error(`File does not export an object: ${absolutePath}`)
+  }
+
+  return fileContents
 }
