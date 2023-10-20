@@ -1,0 +1,8 @@
+{
+  "config": {
+    "fail": {
+      "invalid_path": "Couldn't retrieve configuration file. Please provide a valid path",
+      "file_not_found": "Please provide a valid release-config.js or release-config.cjs"
+    }
+  }
+}

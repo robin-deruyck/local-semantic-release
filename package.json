@@ -1,0 +1,40 @@
+{
+  "name": "local-semantic-release",
+  "version": "0.0.0",
+  "description": "Allow to run locally semantic-release flow for sanity checks",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robin-deruyck/local-semantic-release.git"
+  },
+  "keywords": [
+    "semantic-release",
+    "local",
+    "github-actions",
+    "gha",
+    "github-action"
+  ],
+  "author": "robin-deruyck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robin-deruyck/local-semantic-release/issues"
+  },
+  "homepage": "https://github.com/robin-deruyck/local-semantic-release#readme",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^12.0.0",
+    "conventional-changelog-conventionalcommits": "^7.0.2",
+    "prettier": "3.0.3",
+    "semantic-release": "^22.0.5",
+    "vitest": "^0.34.6"
+  },
+  "dependencies": {
+    "glob": "^10.3.10"
+  }
+}
