@@ -17,6 +17,10 @@ jobs:
       - name: Install Dependencies && test
         run: npm install && npm test
 
+      - name: Install Semantic-Release
+        shell: bash
+        run: npm i -D semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/release-notes-generator
+
       - name: Semantic Release
         uses: codfish/semantic-release-action@v2
         id: semantic
@@ -58,7 +62,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Install Semantic-Release
-        shell: bash
-        run: npm i -D semantic-release @semantic-release/changelog @semantic-release/git @semantic-release/release-notes-generator
