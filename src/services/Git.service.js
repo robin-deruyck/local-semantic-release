@@ -1,6 +1,6 @@
-const { execSync } = require('child_process')
+import { execSync } from 'node:child_process'
 
-const getLocalRepoUrl = () => {
+export const getLocalRepoUrl = () => {
   const topLevelDir = execSync('git rev-parse --show-toplevel')
     .toString()
     .trim()
@@ -8,10 +8,5 @@ const getLocalRepoUrl = () => {
   return `file://${topLevelDir}/.git`
 }
 
-const getCurrentBranch = () =>
+export const getCurrentBranch = () =>
   execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
-
-module.exports = {
-  getLocalRepoUrl,
-  getCurrentBranch
-}

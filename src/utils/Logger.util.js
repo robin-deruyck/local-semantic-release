@@ -1,20 +1,16 @@
-const bashColorsUtil = require('./Colors.util')
+import { COLORS } from './Colors.util.js'
 
-const { RED, GREEN, YELLOW, ENDCOLOR } = bashColorsUtil
-
-const Logger = {
+export const Logger = {
   info: (msg) => log(msg, '📢', 'INFO', ''),
-  warn: (msg) => log(msg, '🤨', 'WARNING', YELLOW),
-  success: (msg) => log(msg, '💚', 'SUCCESS', GREEN),
-  fail: (msg) => log(msg, '💩', 'FAIL', RED)
+  warn: (msg) => log(msg, '🤨', 'WARNING', COLORS.YELLOW),
+  success: (msg) => log(msg, '💚', 'SUCCESS', COLORS.GREEN),
+  fail: (msg) => log(msg, '💩', 'FAIL', COLORS.RED)
 }
 
 const log = (msg, icon, severityText, color) => {
   const now = new Date()
-  const logMessage = ` [${now.toLocaleTimeString()}] [local-semantic-release] ${icon} ${color}[${severityText}]${ENDCOLOR}: ${msg} `
+  const logMessage = ` [${now.toLocaleTimeString()}] [local-semantic-release] ${icon} ${color}[${severityText}]${
+    COLORS.ENDCOLOR
+  }: ${msg} `
   console.log(logMessage)
-}
-
-module.exports = {
-  Logger
 }

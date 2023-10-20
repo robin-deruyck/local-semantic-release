@@ -1,16 +1,17 @@
-const { Logger } = require('./src/utils/logger.util.js')
-const {
+import { Logger } from './src/utils/logger.util.js'
+import {
   readJSObjectFromFile,
   resolveConfigFile,
   searchFile
-} = require('./src/services/File.service.js')
-const translations = require('./src/i18n/en-GB.json')
-const { isLibInstalled } = require('./src/services/Environment.service')
-const { spawn } = require('child_process')
-const {
+} from './src/services/File.service.js'
+import translations from './src/i18n/en-GB.json' assert { type: 'json' }
+
+import { spawn } from 'node:child_process'
+import {
   getCurrentBranch,
   getLocalRepoUrl
-} = require('./src/services/Git.service')
+} from './src/services/Git.service.js'
+import { isLibInstalled } from './src/services/Environment.service.js'
 
 const loadReleaseConfig = async () => {
   const configPath = resolveConfigFile(process.argv)
@@ -39,7 +40,7 @@ const runSemanticRelease = () => {
   )
 }
 
-;(async () => {
+export const start = async () => {
   try {
     await checkGitInstalled()
     runSemanticRelease()
@@ -47,4 +48,6 @@ const runSemanticRelease = () => {
     Logger.fail(e)
     console.log(e)
   }
-})()
+}
+
+await start()

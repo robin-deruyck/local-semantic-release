@@ -1,14 +1,13 @@
-const { Glob } = require('glob')
-const path = require('path')
-const fs = require('fs')
-const { exec } = require('child_process')
+import { Glob } from 'glob'
+import path from 'node:path'
+import fs from 'node:fs'
 
-const resolveConfigFile = (args) => {
+export const resolveConfigFile = (args) => {
   const flagIndex = args?.indexOf('-p')
   return flagIndex >= 0 ? args[flagIndex + 1] : undefined
 }
 
-const getShortestPath = (paths) => {
+export const getShortestPath = (paths) => {
   if (!paths.length) return null
   return paths.reduce((a, b) => {
     const sizeA = a.split('/').length
@@ -18,12 +17,12 @@ const getShortestPath = (paths) => {
   })
 }
 
-const searchFile = async (pattern, ignore) => {
+export const searchFile = async (pattern, ignore) => {
   const g = new Glob(pattern, ignore)
   return getShortestPath(Array.from(g))
 }
 
-const readJSObjectFromFile = async (filePath) => {
+export const readJSObjectFromFile = async (filePath) => {
   const absolutePath = path.resolve(filePath)
 
   if (!fs.existsSync(absolutePath)) {
@@ -37,11 +36,4 @@ const readJSObjectFromFile = async (filePath) => {
   }
 
   return fileContents
-}
-
-module.exports = {
-  resolveConfigFile,
-  readJSObjectFromFile,
-  searchFile,
-  getShortestPath
 }
