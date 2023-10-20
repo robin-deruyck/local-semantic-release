@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { resolveConfigFile } from './FIle.service.js'
+import { resolveConfigFile } from './File.service'
 
 test('resolveConfigFile', () => {
   test('Should return undefined with empty array or nullable value', () => {

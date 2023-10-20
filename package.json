@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "Allow to run locally semantic-release flow for sanity checks",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "vitest"
   },
@@ -12,6 +11,8 @@
     "url": "git+https://github.com/robin-deruyck/local-semantic-release.git"
   },
   "keywords": [
+    "javascript",
+    "js",
     "semantic-release",
     "local",
     "github-actions",
