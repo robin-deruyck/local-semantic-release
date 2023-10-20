@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Node ${{ matrix.node }} and ${{ matrix.os }}
+    timeout-minutes: 30
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies && test
+        run: npm install && npm test
+
+      - name: Semantic Release
+        uses: codfish/semantic-release-action@v2
+        id: semantic
+        with:
+          branches: |
+            [
+            'main'
+            ]
+          plugins: |
+            [
+              ['@semantic-release/commit-analyzer',{
+                  'preset': 'angular',
+                  'releaseRules': [
+                    {
+                      'type': 'docs',
+                      'release': 'patch'
+                    },
+                    {
+                      'type': 'refactor',
+                      'release': 'patch'
+                    },
+                    {
+                      'type': 'style',
+                      'release': 'patch'
+                    },
+                    {
+                      'type': 'chore',
+                      'release': 'patch'
+                    }
+                  ]
+                }
+              ],
+              '@semantic-release/release-notes-generator',
+              ['@semantic-release/changelog', {'changelogFile': 'CHANGELOG.md','changelogTitle': '# Changelog'}],
+              '@semantic-release/npm',
+              ['@semantic-release/github',  {'successComment': false}],
+              ['@semantic-release/git', {'assets': ['CHANGELOG.md', 'package.json']}]
+            ]
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
