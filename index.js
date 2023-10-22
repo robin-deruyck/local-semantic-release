@@ -1,21 +1,14 @@
 import { Logger } from './src/utils/logger.util.js'
-import {
-  readJSObjectFromFile,
-  resolveConfigFile,
-  searchFile
-} from './src/services/File.service.js'
-import translations from './src/i18n/en-GB.json' assert { type: 'json' }
 
 import { spawn } from 'node:child_process'
 import {
   getCurrentBranch,
   getLocalRepoUrl
 } from './src/services/Git.service.js'
-import { isLibInstalled } from './src/services/Environment.service.js'
 
 const runSemanticRelease = () => {
   spawn(
-    `CI=true npx semantic-release --branches ${getCurrentBranch()} -r ${getLocalRepoUrl()}`,
+    `CI=true GITHUB_TOKEN=x NPM_TOKEN=x npx semantic-release --branches ${getCurrentBranch()} -r ${getLocalRepoUrl()}`,
     {
       shell: true,
       stdio: 'inherit'

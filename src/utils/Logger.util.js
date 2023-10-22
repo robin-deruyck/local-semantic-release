@@ -12,5 +12,5 @@ const log = (msg, icon, severityText, color) => {
   const logMessage = ` [${now.toLocaleTimeString()}] [local-semantic-release] ${icon} ${color}[${severityText}]${
     COLORS.ENDCOLOR
   }: ${msg} `
-  console.log(logMessage)
+  process.stdout.write(logMessage)
 }
